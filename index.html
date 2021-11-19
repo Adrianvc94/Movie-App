@@ -17,25 +17,38 @@
       crossorigin="anonymous"
     ></script>
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- My Styles -->
     <link rel="stylesheet" href="./styles/MainPageStyle.css" />
-
-    <!-- JS Code -->
-    <script src="./index.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <img
-            src="https://cdn-icons.flaticon.com/png/512/2970/premium/2970982.png?token=exp=1637110257~hmac=38529c86946c07d707614e3611cc6b08"
-            alt=""
-            width="30"
-            height="24"
-            class="d-inline-block align-text-top"
-          />
-          Bootstrap
-        </a>
+      <div class="container-fluid container_navbar">
+
+        <div style="display: flex;">
+          <a class="navbar-brand" href="#">
+            <img
+              src="https://cdn-icons.flaticon.com/png/512/2970/premium/2970982.png?token=exp=1637110257~hmac=38529c86946c07d707614e3611cc6b08"
+              alt=""
+              width="30"
+              height="24"
+              class="d-inline-block align-text-top"
+            />
+            Movie List
+          </a>
+  
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          </form>
+        </div>
+      
 
         <button
           class="navbar-toggler"
@@ -53,7 +66,6 @@
     </nav>
 
     <div class="container main-container">
-        
       <nav
         class="nav nav-pills flex-column flex-sm-column lateral_navbar"
         id="navbar"
@@ -64,53 +76,15 @@
           href="#"
           >Movies</a
         >
-        <a class="flex-sm-fill text-sm-center nav-link" href="#"
-          >Series</a
-        >
+        <a class="flex-sm-fill text-sm-center nav-link" href="#">Series</a>
       </nav>
 
       <div class="container-fluid">
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-            <div class="col">
-              <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4" id="movies"></div>
       </div>
-
-      
     </div>
+
+    <!-- JS Code -->
+    <script src="./index.js"></script>
   </body>
 </html>

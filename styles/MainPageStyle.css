@@ -1,25 +1,137 @@
-.main-container{
-    display: flex;
-    margin-top: 20px;
+body {
+  font-family: "Open Sans", sans-serif;
 }
 
-.lateral_navbar{
-    display: none;
+.main-container {
+  display: flex;
+  margin-top: 20px;
 }
 
-.show{
-    display: block;
-    z-index: 1;
-    position: absolute;
-    background-color: white;
-    left: 0;
-    padding: 10px 10px 10px 20px;
-    height: calc(100vh - 80px);
+.lateral_navbar {
+  display: none;
 }
 
-@media (min-width: 768px){
-    .lateral_navbar{
-        display: block;
-        position: relative;
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.show {
+  display: block;
+  z-index: 3;
+  position: fixed;
+  background-color: white;
+  left: 0;
+  top: 100px;
+  padding: 30px 20px 10px 20px;
+  height: 100vh;
+}
+
+.stopScroll {
+  overflow: hidden;
+}
+
+.cards {
+  max-height: 370px;
+  max-width: 220px;
+  margin-bottom: 27px;
+  border-radius: 10px;
+  z-index: 2;
+  backdrop-filter: blur(2rem);
+  display: flex;
+}
+
+.votes {
+  background-color: #d9910d;
+  color: white;
+  font-weight: 500;
+  text-align: center;
+  padding: 5px;
+  width: 34px;
+  border-radius: 100px;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  position: relative;
+  left: 83%;
+  bottom: 12%;
+  z-index: 4;
+}
+
+.movie_title {
+  position: relative;
+  bottom: 50px;
+}
+
+.description {
+  z-index: 4;
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  width: 100%;
+  height: 70%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  opacity: 0;
+  transition: opacity 0.25s;
+  display: flex;
+  justify-content: center;
+  padding: 10px 10px 0 10px;
+  border-radius: 0 0 7px 7px;
+}
+
+.description:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.card {
+  border: none;
+}
+
+.nav-link {
+  color: black;
+  font-weight: 600;
+}
+
+.navbar-brand {
+  padding: 15px 0 10px 100px;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.container_navbar{
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .navbar-brand {
+    padding: 15px 0 10px 10px;
+  }
+  .votes {
+    left: 80%;
+    bottom: 10%;
+  }
+  .description {
+    height: 75%;
+  }
+  .cards {
+    max-height: 335px;
     }
+}
+
+@media (min-width: 768px) {
+  .lateral_navbar {
+    display: block;
+    position: relative;
+  }
+  .navbar {
+    position: static;
+  }
+  .votes {
+    left: 83%;
+    bottom: 12%;
+  }
 }
