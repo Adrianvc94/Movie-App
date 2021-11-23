@@ -4,37 +4,61 @@ const BASE_URL = "https://api.themoviedb.org/3/";
 
 const API_URL = `${BASE_URL}discover/movie?sort_by=popularity.desc&${API_KEY}`;
 
-const IMAGE_URL = "https://image.tmdb.org/t/p/w500";
+const IMAGE_URL = "https://image.tmdb.org/t/p/w1280";
+
+const SEARCH_URL = `${BASE_URL}search/movie?${API_KEY}`;
+
 
 const MOVIES = document.getElementById("movies");
+const FORM = document.getElementById("form");
+const SEARCH = document.getElementById("search");
+
 
 async function getData(url) {
   const response = await fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data.results);
+      
       showMovies(data.results);
     });
 }
 
+async function getImage(url) {
+  
+  var image;
+
+  const response = await fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data.backdrops);
+      image = data.backdrops;
+      
+    });
+
+    return(image);
+}
+
+
 function showMovies(movies) {
   MOVIES.innerHTML = "";
 
-  movies.forEach((movie) => {
-    const { title, overview, poster_path, vote_average } = movie;
+  (!document.getElementById("movies").classList.contains("row-cols-2")) && document.getElementById("movies").classList.add("row", "row-cols-2", "row-cols-md-3", "row-cols-lg-4", "g-3");;
+ 
 
+  movies.forEach((movie) => {
+    const { id, title, overview, poster_path, vote_average, release_date } = movie;
 
     const movieElement = document.createElement("div");
-    movieElement.classList.add("col");
+    movieElement.classList.add("col"); 
+
     movieElement.innerHTML = `
-        <div class="card h-100 cards"">
-            <img src="${
-              IMAGE_URL + poster_path
-            }" class="card-img-top img-fluid cards"  alt="Movie poster">
-           
+        <div class="card h-100 cards" onclick="movieInfo('${id}', \'${title.replace(/['"]+/g, '')}'\, \'${overview.replace(/['"]+/g, '')}\', \'${poster_path}'\, \'${vote_average}'\, '${release_date}')">
+
+            <img src="${IMAGE_URL + poster_path}" class="card-img-top img-fluid cards"  alt="Movie poster">
             <p class="card-text votes"> ${vote_average}</p>
             <p class="card-text movie_title"> ${title}</p>
             <p class="card-text movie_title description"> ${overview.substring(0,150)}...</p>
+
         </div>
         `;
 
@@ -42,24 +66,50 @@ function showMovies(movies) {
   });
 }
 
-getData(API_URL);
+
+function callMovies(){
+  getData(API_URL);
+  SEARCH.value = '';
+}
+
+callMovies();
 
 
-function movieInfo(movieObject) {
+
+async function movieInfo(id, title, overview, poster_path, vote_average, release_date) {
   MOVIES.innerHTML = "";
 
   const movieDesc = document.createElement('div');
 
+  const poster = await getImage(BASE_URL + 'movie/' + id + '/images?' + API_KEY);
+
+  document.getElementById("movies").classList.remove("row", "row-cols-2", "row-cols-md-3", "row-cols-lg-4", "g-3");
+  
+  document.getElementById("movie_container").style.display = "flex";
+  document.getElementById("movie_container").style.justifyContent = "center";
+
   movieDesc.innerHTML = `
-      <div class="card h-100">
-        <img src="${
-          IMAGE_URL + movieObject.poster_path
-        }" class="card-img-top img-fluid cards"  alt="Movie poster">
+      <div class="card">
+
+       <div class="poster" style="background-image: url('${IMAGE_URL + poster[0].file_path}');">
+        <h1 class="poster-title">${title}</h1>
+       </div>
       
-        <p class="card-text votes"> ${movieObject.vote_average}</p>
-        <p class="card-text movie_title"> ${movieObject.title}</p>
+       <img src=${IMAGE_URL + poster_path} style="width: 140px;" class="cover-page" alt="${title}"/>
+       <div class="movie-details"> 
+        <span>Votes: ${vote_average}</span>
+        <span>Released: ${release_date}</span>
+       </div>
+        
+      <br/>
+
+        <p class="card-text description-tag">Description</p>
+        <p class="card-text overview-tag">${overview}</p>
       </div>
+
+    
   `;
+
 
   MOVIES.appendChild(movieDesc);
 
@@ -74,3 +124,16 @@ function DisplayNavbar() {
     ? document.querySelector("body").classList.remove("stopScroll")
     : document.querySelector("body").classList.add("stopScroll");
 }
+
+FORM.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const searchValue = SEARCH.value;
+  
+  if(searchValue){
+    getData(`${SEARCH_URL}&query=${searchValue}`);
+  }else{
+    getData(API_URL);
+  }
+
+});

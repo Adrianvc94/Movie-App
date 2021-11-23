@@ -15,6 +15,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 5;
+  padding: 10px;
 }
 
 .show {
@@ -22,11 +23,14 @@ body {
   z-index: 3;
   position: fixed;
   background-color: white;
+
   left: 0;
-  top: 100px;
-  padding: 30px 20px 10px 20px;
+  top: 70px;
+  padding: 80px 20px 10px 20px;
   height: 100vh;
 }
+
+
 
 .stopScroll {
   overflow: hidden;
@@ -60,7 +64,7 @@ body {
 
 .movie_title {
   position: relative;
-  bottom: 50px;
+  bottom: 70px;
 }
 
 .description {
@@ -87,11 +91,21 @@ body {
 
 .card {
   border: none;
+  display: inline-block;
 }
 
 .nav-link {
-  color: black;
-  font-weight: 600;
+  margin-bottom: 20px;
+  font-weight: 500;
+  color: #8c8c8c;
+  cursor: pointer;
+}
+
+.nav-link:hover{
+  margin-bottom: 20px;
+  color: #484539;
+  -webkit-transform: translateX(2px);
+  transform: translateX(2px);
 }
 
 .navbar-brand {
@@ -102,8 +116,101 @@ body {
   border: none;
 }
 
-.container_navbar{
-    flex-wrap: wrap;
+.container_navbar {
+  flex-wrap: wrap;
+}
+
+.navbar-brand {
+  cursor: pointer;
+}
+
+.poster {
+  height: 399px;
+  box-shadow: inset 20px -50px 50px 20px rgb(0 0 0 / 50%);
+  background-position: center top;
+  background-size: cover;
+}
+
+.poster-title {
+  position: relative;
+  top: 290px;
+  left: auto;
+  float: right;
+  right: 20px;
+  clear: both;
+  color: #f9f9f9;
+  text-shadow: 1px 1px #111;
+  overflow: visible;
+  text-overflow: ellipsis;
+  max-width: 80vw;
+  max-height: 50px;
+  padding-left: 30px;
+}
+
+.movie-details {
+  position: relative;
+  min-height: 50px;
+  padding: 10px 5px;
+  text-align: center;
+  color: #ddd;
+  background-color: #000;
+}
+
+.movie-details span {
+  position: relative;
+  padding: 2px 5px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.cover-page {
+  position: relative;
+  top: -50px;
+  left: 30px;
+  display: none;
+  min-height: 187.5px;
+  float: left;
+  border: 1px solid #f9f9f9;
+  z-index: 1;
+}
+
+.description-tag {
+  font-weight: 500;
+  font-size: 1.2rem;
+  position: relative;
+  top: auto;
+  left: auto;
+  max-width: 90%;
+}
+
+.overview-tag {
+  position: relative;
+  top: auto;
+  left: auto;
+  max-width: 90%;
+}
+
+#movie_container {
+  margin-bottom: 50px;
+}
+
+@media (min-width: 800px) {
+  .movie-details {
+    text-align: right;
+    padding-right: 10px;
+  }
+  .cover-page {
+    display: inline-block;
+  }
+  .description-tag {
+    left: 10%;
+  }
+  .overview-tag {
+    left: 10%;
+  }
+  form{
+    padding-right: 60px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -112,26 +219,38 @@ body {
   }
   .votes {
     left: 80%;
-    bottom: 10%;
+    bottom: 17%;
   }
   .description {
     height: 75%;
+    bottom: 10%;
   }
   .cards {
     max-height: 335px;
-    }
+  }
+  .navbar{
+    padding: 8px 0;
+  }
 }
 
 @media (min-width: 768px) {
   .lateral_navbar {
     display: block;
     position: relative;
+    padding-top: 35px;
+    right: 12px;
   }
   .navbar {
     position: static;
   }
   .votes {
     left: 83%;
-    bottom: 12%;
+    bottom: 16%;
+  }
+}
+
+@media (min-width: 1025px) {
+  .description {
+    bottom: -10%;
   }
 }
