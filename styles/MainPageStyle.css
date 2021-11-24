@@ -1,5 +1,5 @@
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Roboto Slab', serif;
 }
 
 .main-container {
@@ -65,6 +65,7 @@ body {
 .movie_title {
   position: relative;
   bottom: 70px;
+  font-size: 1.2rem;
 }
 
 .description {
